@@ -3,13 +3,17 @@ package np.com.vikashparajuli.dynamicviewpager;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
-import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import org.greenrobot.eventbus.EventBus;
+import org.greenrobot.eventbus.Subscribe;
+
 import java.util.HashMap;
+
+import np.com.vikashparajuli.dynamicviewpager.pojo.MessageEvent;
 
 /**
  * Created by viks on 7/14/16.
@@ -17,7 +21,9 @@ import java.util.HashMap;
 
 public class ContentFragment extends Fragment {
 
-    HashMap<String, String> hashData;
+    //private Bus bus = EventBus.getInstance();
+    private HashMap<String, String> hashData;
+    private TextView textView;
     int position;
 
     public static ContentFragment newInstance(int position, HashMap<String, String> hashMap) {
@@ -30,16 +36,36 @@ public class ContentFragment extends Fragment {
     }
 
     @Override
+    public void onStart() {
+        super.onStart();
+        EventBus.getDefault().register(this);
+    }
+
+    @Override
+    public void onStop() {
+        EventBus.getDefault().unregister(this);
+        super.onStop();
+    }
+
+    @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         this.position = getArguments().getInt("position");
         hashData = (HashMap<String, String>) getArguments().getSerializable("data");
+
+    }
+
+    @Subscribe
+    public void getMessage(MessageEvent event){
+        if (event.message.equals("green")){
+            textView.setBackgroundColor(getActivity().getResources().getColor(android.R.color.holo_green_dark));
+        } else textView.setBackgroundColor(getActivity().getResources().getColor(android.R.color.white));
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_content, container, false);
-        TextView textView = (TextView) rootView.findViewById(R.id.tv);
+         textView = (TextView) rootView.findViewById(R.id.tv);
         textView.setText(hashData.get("title") + " At: " + position);
 
         if(MainActivity.setBackgroundGreen){
