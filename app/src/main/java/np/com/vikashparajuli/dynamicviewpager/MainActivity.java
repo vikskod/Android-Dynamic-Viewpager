@@ -75,7 +75,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 List<HashMap<String, String>> list = new ArrayList<>();
                 for (int i=0; i<3; i++){
                     HashMap<String, String> hashMap2 = new HashMap<>();
-                    hashMap2.put("title", "Added " + i);
+                    hashMap2.put("title", "Added @ Back " + i);
                     list.add(hashMap2);
                 }
                 adapter.addAll(list);
@@ -90,7 +90,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 break;
             case R.id.btnRemoveColor:
                 setBackgroundGreen = false;
-                EventBus.getDefault().post(new MessageEvent("fuck"));
+                EventBus.getDefault().post(new MessageEvent("xxx"));
                 adapter.notifyDataSetChanged();
                 break;
         }

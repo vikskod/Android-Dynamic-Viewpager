@@ -56,6 +56,7 @@ public abstract class ArrayPagerAdapter<T> extends PagerAdapter {
         synchronized (lock) {
             items.add(0, identifiedItemFactory.create(item));
         }
+        itemPositionChangeChecked = new SparseBooleanArray(this.items.size());
         notifyDataSetChanged();
     }
 
