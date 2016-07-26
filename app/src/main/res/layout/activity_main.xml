@@ -23,12 +23,28 @@
             android:layout_height="match_parent"
             android:orientation="vertical">
 
-            <Button
-                android:id="@+id/add_btn"
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:onClick="onClick"
-                android:text="Add" />
+                android:orientation="horizontal">
+
+                <Button
+                    android:id="@+id/btn_add_front"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:onClick="onClick"
+                    android:text="Add on Front" />
+
+                <Button
+                    android:id="@+id/btn_add_back"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:onClick="onClick"
+                    android:text="Add on back" />
+
+            </LinearLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -53,34 +69,51 @@
                     android:text="0" />
             </LinearLayout>
 
-            <Button
-                android:id="@+id/add_all_btn"
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:onClick="onClick"
-                android:text="Add 3 Items" />
+                android:orientation="horizontal">
 
-            <Button
-                android:id="@+id/clear_btn"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:onClick="onClick"
-                android:text="Clear" />
+                <Button
+                    android:id="@+id/add_all_btn"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:onClick="onClick"
+                    android:text="Add 3 Items" />
 
-            <Button
-                android:id="@+id/btnGreen"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:onClick="onClick"
-                android:text="Set Background GREEN"
-                android:textColor="@android:color/holo_green_dark" />
+                <Button
+                    android:id="@+id/clear_btn"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:onClick="onClick"
+                    android:text="Clear" />
+            </LinearLayout>
 
-            <Button
-                android:id="@+id/btnRemoveColor"
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:onClick="onClick"
-                android:text="REMOVE Background color" />
+                android:orientation="horizontal">
+
+                <Button
+                    android:id="@+id/btnGreen"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:onClick="onClick"
+                    android:text="Set Background GREEN"
+                    android:textColor="@android:color/holo_green_dark" />
+
+                <Button
+                    android:id="@+id/btnRemoveColor"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:onClick="onClick"
+                    android:text="REMOVE Background color" />
+
+            </LinearLayout>
 
         </LinearLayout>
 

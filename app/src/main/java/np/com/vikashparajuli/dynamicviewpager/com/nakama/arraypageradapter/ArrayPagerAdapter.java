@@ -15,9 +15,10 @@ import java.util.List;
  * @param <T> item type
  */
 public abstract class ArrayPagerAdapter<T> extends PagerAdapter {
-    private ArrayList<IdentifiedItem<T>> items;
     private final Object lock = new Object();
     private final IdentifiedItemFactory<T> identifiedItemFactory;
+    private ArrayList<IdentifiedItem<T>> items;
+    private SparseBooleanArray itemPositionChangeChecked = new SparseBooleanArray();
 
     public ArrayPagerAdapter() {
         this(new ArrayList<T>());
@@ -28,11 +29,11 @@ public abstract class ArrayPagerAdapter<T> extends PagerAdapter {
         this(new ArrayList<>(Arrays.asList(items)));
     }
 
+
     public ArrayPagerAdapter(List<T> items) {
         identifiedItemFactory = new IdentifiedItemFactory<>(0);
         this.items = identifiedItemFactory.createList(items);
     }
-
 
     @Override
     public Object instantiateItem(ViewGroup container, int position) {
@@ -47,6 +48,13 @@ public abstract class ArrayPagerAdapter<T> extends PagerAdapter {
     public void add(T item) {
         synchronized (lock) {
             items.add(identifiedItemFactory.create(item));
+        }
+        notifyDataSetChanged();
+    }
+
+    public void addToFront(T item) {
+        synchronized (lock) {
+            items.add(0, identifiedItemFactory.create(item));
         }
         notifyDataSetChanged();
     }
@@ -114,7 +122,6 @@ public abstract class ArrayPagerAdapter<T> extends PagerAdapter {
         return items.get(position).item;
     }
 
-
     /**
      * Returns the position of the specified item in the array.
      *
@@ -175,8 +182,6 @@ public abstract class ArrayPagerAdapter<T> extends PagerAdapter {
         this.items = identifiedItemFactory.createList(items);
         notifyDataSetChanged();
     }
-
-    private SparseBooleanArray itemPositionChangeChecked = new SparseBooleanArray();
 
     static class IdentifiedItemFactory<T> {
         private long lastId;

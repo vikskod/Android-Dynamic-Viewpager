@@ -48,10 +48,15 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     @Override
     public void onClick(View view) {
         switch (view.getId()) {
-            case R.id.add_btn:
+            case R.id.btn_add_back:
                 HashMap<String, String> hashMap = new HashMap<>();
-                hashMap.put("title", "Added " + ++j);
+                hashMap.put("title", "Added @ Back " + ++j);
                 adapter.add(hashMap);
+                break;
+            case R.id.btn_add_front:
+                HashMap<String, String> hashMap1 = new HashMap<>();
+                hashMap1.put("title", "Added @ Front" + ++j);
+                adapter.addToFront(hashMap1);
                 break;
             case R.id.remove_btn:
                 String s = remove_edit.getText().toString();
@@ -69,9 +74,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             case R.id.add_all_btn:
                 List<HashMap<String, String>> list = new ArrayList<>();
                 for (int i=0; i<3; i++){
-                    HashMap<String, String> hashMap1 = new HashMap<>();
-                    hashMap1.put("title", "Added " + i);
-                    list.add(hashMap1);
+                    HashMap<String, String> hashMap2 = new HashMap<>();
+                    hashMap2.put("title", "Added " + i);
+                    list.add(hashMap2);
                 }
                 adapter.addAll(list);
                 break;

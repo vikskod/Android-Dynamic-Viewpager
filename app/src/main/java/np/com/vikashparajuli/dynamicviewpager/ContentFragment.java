@@ -1,5 +1,6 @@
 package np.com.vikashparajuli.dynamicviewpager;
 
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -58,8 +59,8 @@ public class ContentFragment extends Fragment {
     @Subscribe
     public void getMessage(MessageEvent event){
         if (event.message.equals("green")){
-            textView.setBackgroundColor(getActivity().getResources().getColor(android.R.color.holo_green_dark));
-        } else textView.setBackgroundColor(getActivity().getResources().getColor(android.R.color.white));
+            textView.setBackgroundColor(Color.GREEN);
+        } else textView.setBackgroundColor(Color.GRAY);
     }
 
     @Override
@@ -69,8 +70,8 @@ public class ContentFragment extends Fragment {
         textView.setText(hashData.get("title") + " At: " + position);
 
         if(MainActivity.setBackgroundGreen){
-            textView.setBackgroundColor(getActivity().getResources().getColor(android.R.color.holo_green_dark));
-        } else textView.setBackgroundColor(getActivity().getResources().getColor(android.R.color.white));
+            textView.setBackgroundColor(Color.GREEN);
+        } else textView.setBackgroundColor(Color.GRAY);
 
         return rootView;
     }
