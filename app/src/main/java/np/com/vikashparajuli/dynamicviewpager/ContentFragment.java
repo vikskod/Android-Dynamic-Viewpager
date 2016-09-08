@@ -22,7 +22,6 @@ import np.com.vikashparajuli.dynamicviewpager.pojo.MessageEvent;
 
 public class ContentFragment extends Fragment {
 
-    //private Bus bus = EventBus.getInstance();
     private HashMap<String, String> hashData;
     private TextView textView;
     int position;
@@ -53,7 +52,6 @@ public class ContentFragment extends Fragment {
         super.onCreate(savedInstanceState);
         this.position = getArguments().getInt("position");
         hashData = (HashMap<String, String>) getArguments().getSerializable("data");
-
     }
 
     @Subscribe

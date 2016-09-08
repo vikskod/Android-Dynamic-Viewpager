@@ -1,7 +1,6 @@
 package np.com.vikashparajuli.dynamicviewpager;
 
 import android.os.Bundle;
-import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.EditText;
@@ -13,14 +12,16 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
-import np.com.vikashparajuli.dynamicviewpager.adapter.CustomAdapter;
-import np.com.vikashparajuli.dynamicviewpager.com.nakama.arraypageradapter.ArrayPagerAdapter;
+import np.com.vikashparajuli.dynamicviewpager.Animation.DepthPageTransformer;
+import np.com.vikashparajuli.dynamicviewpager.adapter.CustomStatePagerAdapter;
+import np.com.vikashparajuli.dynamicviewpager.nakama.arraypageradapter.ArrayFragmentStatePagerAdapter;
 import np.com.vikashparajuli.dynamicviewpager.pojo.MessageEvent;
+import np.com.vikashparajuli.dynamicviewpager.viewpager.CustomViewPager;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
     public static boolean setBackgroundGreen = false;
-    private ArrayPagerAdapter adapter;
+    private ArrayFragmentStatePagerAdapter adapter;
     private int j = 0;
     private EditText remove_edit;
 
@@ -29,7 +30,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        ViewPager view_pager = (ViewPager) findViewById(R.id.view_pager);
+        CustomViewPager verticalViewPager = (CustomViewPager) findViewById(R.id.view_pager);
+        verticalViewPager.setPageTransformer(true, new DepthPageTransformer());
         remove_edit = (EditText) findViewById(R.id.remove_edit);
 
         ArrayList<HashMap<String, String>> toAddArray = new ArrayList<>();
@@ -39,8 +41,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             toAddArray.add(hashMap);
         }
 
-        CustomAdapter customAdapter = new CustomAdapter(getSupportFragmentManager(), toAddArray);
-        view_pager.setAdapter(customAdapter);
+        //CustomAdapter customAdapter = new CustomAdapter(getSupportFragmentManager(), toAddArray);
+        CustomStatePagerAdapter customAdapter = new CustomStatePagerAdapter(getSupportFragmentManager(), toAddArray);
+        verticalViewPager.setAdapter(customAdapter);
         adapter = customAdapter;
     }
 
@@ -65,7 +68,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                     if (position >= 0 && position < adapter.getCount()) {
                         adapter.remove(position);
                     } else {
-                        Toast.makeText(getApplicationContext(), "IndexOutOfBounds:" + position + ",data size is " + adapter.getCount(), Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getApplicationContext(), "IndexOutOfBounds:" + position + ", data size is " + adapter.getCount(), Toast.LENGTH_SHORT).show();
                     }
                 } else {
                     Toast.makeText(getApplicationContext(), "Set remove position.", Toast.LENGTH_SHORT).show();
@@ -73,7 +76,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 break;
             case R.id.add_all_btn:
                 List<HashMap<String, String>> list = new ArrayList<>();
-                for (int i=0; i<3; i++){
+                for (int i = 0; i < 3; i++) {
                     HashMap<String, String> hashMap2 = new HashMap<>();
                     hashMap2.put("title", "Added @ Back " + i);
                     list.add(hashMap2);

@@ -1,4 +1,4 @@
-package np.com.vikashparajuli.dynamicviewpager.com.nakama.arraypageradapter;
+package np.com.vikashparajuli.dynamicviewpager.nakama.arraypageradapter;
 
 import android.annotation.SuppressLint;
 import android.support.v4.app.Fragment;

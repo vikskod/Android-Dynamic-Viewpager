@@ -1,4 +1,4 @@
-package np.com.vikashparajuli.dynamicviewpager.com.nakama.arraypageradapter;
+package np.com.vikashparajuli.dynamicviewpager.nakama.arraypageradapter;
 
 import android.support.v4.view.PagerAdapter;
 import android.util.SparseBooleanArray;
@@ -14,23 +14,23 @@ import java.util.List;
  *
  * @param <T> item type
  */
-public abstract class ArrayPagerAdapter<T> extends PagerAdapter {
+abstract class ArrayPagerAdapter<T> extends PagerAdapter {
     private final Object lock = new Object();
     private final IdentifiedItemFactory<T> identifiedItemFactory;
     private ArrayList<IdentifiedItem<T>> items;
     private SparseBooleanArray itemPositionChangeChecked = new SparseBooleanArray();
 
-    public ArrayPagerAdapter() {
+    ArrayPagerAdapter() {
         this(new ArrayList<T>());
     }
 
     @SafeVarargs
-    public ArrayPagerAdapter(T... items) {
+    ArrayPagerAdapter(T... items) {
         this(new ArrayList<>(Arrays.asList(items)));
     }
 
 
-    public ArrayPagerAdapter(List<T> items) {
+    ArrayPagerAdapter(List<T> items) {
         identifiedItemFactory = new IdentifiedItemFactory<>(0);
         this.items = identifiedItemFactory.createList(items);
     }
@@ -119,7 +119,7 @@ public abstract class ArrayPagerAdapter<T> extends PagerAdapter {
      *                 data set.
      * @return The data at the specified position.
      */
-    public T getItem(int position) {
+    T getItem(int position) {
         return items.get(position).item;
     }
 
@@ -213,7 +213,7 @@ public abstract class ArrayPagerAdapter<T> extends PagerAdapter {
         long id;
         T item;
 
-        public IdentifiedItem(long id, T item) {
+        IdentifiedItem(long id, T item) {
             this.id = id;
             this.item = item;
         }

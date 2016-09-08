@@ -7,7 +7,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 import np.com.vikashparajuli.dynamicviewpager.ContentFragment;
-import np.com.vikashparajuli.dynamicviewpager.com.nakama.arraypageradapter.ArrayFragmentPagerAdapter;
+import np.com.vikashparajuli.dynamicviewpager.nakama.arraypageradapter.ArrayFragmentPagerAdapter;
 
 /**
  * Created by viks on 7/14/16.
